@@ -34,23 +34,52 @@ public class Code11 {
         int[] height = {1,8,6,2,5,4,8,3,7};
 
 
-        maxArea(height);
+        System.out.println(maxArea(height));;
     }
 
     public static int maxArea(int[] height){
-        int l = 0, r = height.length - 1;
-        int ans = 0;
-        while (l < r) {
-            int area = Math.min(height[l], height[r]) * (r - l);
-            ans = Math.max(ans, area);
-            if (height[l] <= height[r]) {
-                ++l;
-            }
-            else {
-                --r;
+
+        // 定义两个指针
+        int left = 0;
+        int right = height.length - 1;
+        // 定义一个属性用来存放最大容量
+        int asTotal = 0;
+
+        // 循环计算容量
+        while (left < right){
+            // 计算容量
+            int tempTotal = Math.min(height[left],height[right]) * (right - left);
+            // 获取最大值
+            asTotal = Math.max(asTotal,tempTotal);
+            // 判断那个最小
+            if(height[left] <= height[right]){
+                // 左边加一
+                left++;
+            } else {
+                // 右边减一
+                right--;
             }
         }
-        return ans;
+
+        return asTotal;
+
+
+
+
+
+//        int l = 0, r = height.length - 1;
+//        int ans = 0;
+//        while (l < r) {
+//            int area = Math.min(height[l], height[r]) * (r - l);
+//            ans = Math.max(ans, area);
+//            if (height[l] <= height[r]) {
+//                ++l;
+//            }
+//            else {
+//                --r;
+//            }
+//        }
+//        return ans;
 
     }
 }
